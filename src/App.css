@@ -3,13 +3,33 @@
   font-family: Arial, sans-serif;
   margin-top: 30px;
   min-height: 100vh;
-  background-image: url('/nepal-background.jpg'); /* Place your image in public folder */
+  background-image: url('/nepal-background.jfif'); 
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  color: #fff;
+  color: black;
   padding: 20px;
   backdrop-filter: brightness(0.8);
+}
+
+/* New pink container for header */
+.header-container {
+  background-color: pink;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  color: black; /* Title and description in black */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.header-container h1 {
+  margin: 0 0 10px 0;
+  font-size: 32px;
+}
+
+.header-container p {
+  margin: 5px 0;
+  font-size: 18px;
 }
 
 .next-button {
@@ -24,5 +44,5 @@
 }
 
 .next-button:hover {
-  background-color: rgba(255, 255, 255, 1);
+  background-color: pink;
 }
