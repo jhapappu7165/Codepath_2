@@ -1,8 +1,8 @@
-# Web Development Project 2 - Nepal Heritage Flashcards
+# Web Development Project 3 - Nepal Heritage Flashcards (Part 2)
 
 Submitted by: **Pappu Jha**
 
-This web app: **A React-based flashcards app to explore and learn about Nepal’s World Heritage Sites. The app displays questions about famous sites, and lets the user flip the card to view the answer. Users can cycle through random cards to test their knowledge.**
+This web app: **A React-based flashcards app designed to help users explore and learn about the 10 official UNESCO World Heritage Sites of Nepal. Users can test their knowledge by entering answers, flip cards to see correct answers, navigate through the cards in order, shuffle them, and track their correct-answer streak.**
 
 Time spent: **2** hours spent in total
 
@@ -10,47 +10,47 @@ Time spent: **2** hours spent in total
 
 The following **required** functionality is completed:
 
-- [x] **The app displays the title of the card set, a short description, and the total number of cards**
-  - [x] Title of card set is displayed 
-  - [x] A short description of the card set is displayed 
-  - [x] A list of card pairs is created
-  - [x] The total number of cards in the set is displayed 
-  - [x] Card set is represented as a list of card pairs (array of objects with `question` and `answer`)
-
-- [x] **A single card at a time is displayed**
-  - [x] Only one half of the information pair is displayed at a time
-
-- [x] **Clicking on the card flips the card over, showing the corresponding component of the information pair**
-  - [x] Clicking on a card flips it over, showing the back with corresponding information 
-  - [x] Clicking on a flipped card again flips it back, showing the front
-
-- [x] **Clicking on the next button displays a random new card**
+- [x] **The user can enter their guess into an input box *before* seeing the flipside of the card**
+  - Application features a clearly labeled input box with a submit button where users can type in a guess
+  - Clicking on the submit button with an **incorrect** answer shows visual feedback that it is wrong 
+  - Clicking on the submit button with a **correct** answer shows visual feedback that it is correct
+- [x] **The user can navigate through an ordered list of cards**
+  - A forward/next button displayed on the card navigates to the next card in a set sequence when clicked
+  - A previous/back button displayed on the card returns to the previous card in the set sequence when clicked
+  - Both the next and back buttons have visual indication (disabled) at the beginning or end of the list, preventing wrap-around navigation
 
 The following **optional** features are implemented:
 
-- [x] Cards have different visual styles such as color based on their category
-  - Example: Each card has a different background color assigned to enhance visual interest.
+- [x] Users can use a shuffle button to randomize the order of the cards
+  - Cards remain in the same sequence (**NOT** randomized) unless the shuffle button is clicked 
+  - Cards change to a random sequence once the shuffle button is clicked
+- [x] A user’s answer may be counted as correct even when it is slightly different from the target answer
+  - Answers are considered correct even if they only partially match the answer on the card 
+  - Example: ignoring uppercase/lowercase discrepancies
+- [x] A counter displays the user’s current and longest streak of correct responses
+  - The current counter increments when a user guesses an answer correctly
+  - The current counter resets to 0 when a user guesses an answer incorrectly
+  - A separate counter tracks the longest streak, updating if the value of the current streak counter exceeds the value of the longest streak counter 
 
 The following **additional** features are implemented:
 
-- [x] The app starts with a “Start!” card prompting the user to begin
-- [x] The header block (title + description + number) is inside a styled pink container for better UI design
-- [x] Background image (Nepal-related) for enhanced visual appeal
-- [x] Prevents showing same card twice in a row
-- [x] On reload, resets to "Start!" card
+* [x] The app starts with a "Start!" card, guiding the user to begin
+* [x] Clicking on the card flips between question and answer at any time
+* [x] The header and bottom sections are styled with background containers to improve readability over the image background
+* [x] A beautiful background image related to Nepal is used in the app
 
 ## Video Walkthrough
+https://www.loom.com/share/d08f8f0a9e4e45889e27b16e5e884b26?sid=0e762aa9-1840-4bf3-b2dd-2d9a1e1ed454
 
-Here's a walkthrough of implemented required features: https://i.imgur.com/K9723Aw.gif
 
-GIF created with [ScreenToGif](https://www.screentogif.com/) for Windows
+GIF created with **ScreenToGif**  
+[ScreenToGif](https://www.screentogif.com/) for Windows
 
 ## Notes
 
 Challenges encountered:
-- Understanding how to prevent the same random card from repeating (fixed with do-while loop).
-- Setting up Git push from Codespace via SSH — resolved after SSH key setup.
-- Debugging initial React compile errors caused by misplaced return statement — fixed after properly nesting the return inside the App() function.
+- Handling the "Start!" card state while keeping the app easy to navigate
+- Running the app in Gitpod.io due to server limitations
 
 ## License
 
