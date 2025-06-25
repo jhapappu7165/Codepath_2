@@ -3,9 +3,6 @@ import Flashcard from './Flashcard';
 import './App.css';
 
 function App() {
-  const [currentIndex, setCurrentIndex] = useState(-1);
-  const [isFlipped, setIsFlipped] = useState(false);
-
   const cards = [
     {
       question: "Which city is home to the famous Swayambhunath Stupa (Monkey Temple)?",
@@ -59,23 +56,53 @@ function App() {
     }
   ];
 
-  const handleNext = () => {
-    let randomIndex;
-    do {
-      randomIndex = Math.floor(Math.random() * cards.length);
-    } while (randomIndex === currentIndex); // make sure it's a new index
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [userGuess, setUserGuess] = useState('');
+  const [feedback, setFeedback] = useState('');
+  const [currentStreak, setCurrentStreak] = useState(0);
+  const [longestStreak, setLongestStreak] = useState(0);
+  const [shuffledCards, setShuffledCards] = useState(cards);
 
-    setCurrentIndex(randomIndex);
-    setIsFlipped(false); // always reset to question side
+  const handleGuessSubmit = () => {
+    const correctAnswer = shuffledCards[currentIndex].answer.toLowerCase().trim();
+    const userAnswer = userGuess.toLowerCase().trim();
+
+    if (correctAnswer === userAnswer) {
+      setFeedback('✅ Correct!');
+      const newStreak = currentStreak + 1;
+      setCurrentStreak(newStreak);
+      if (newStreak > longestStreak) {
+        setLongestStreak(newStreak);
+      }
+    } else {
+      setFeedback('❌ Incorrect, try again!');
+      setCurrentStreak(0); // reset streak
+    }
   };
 
-
-  const handleCardClick = () => {
-    if (currentIndex === -1) {
-      alert("Press the arrow button to start the flashcards :)");
-    } else {
-      setIsFlipped(!isFlipped);
+  const handleNext = () => {
+    if (currentIndex < shuffledCards.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      setFeedback('');
+      setUserGuess('');
     }
+  };
+
+  const handlePrev = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+      setFeedback('');
+      setUserGuess('');
+    }
+  };
+
+  const handleShuffle = () => {
+    const shuffled = [...cards].sort(() => Math.random() - 0.5);
+    setShuffledCards(shuffled);
+    setCurrentIndex(0);
+    setFeedback('');
+    setUserGuess('');
+    setCurrentStreak(0);
   };
 
   return (
@@ -84,28 +111,37 @@ function App() {
         <h1>The Ultimate Nepal Heritage Explorer!</h1>
         <p>How well do you know World Heritage Sites of Nepal? Test your knowledge here!</p>
         <p>Number of cards: {cards.length}</p>
+        <p>Current Streak: {currentStreak}, Longest Streak: {longestStreak}</p>
       </div>
 
       <Flashcard
-        displayText={
-          currentIndex === -1
-            ? "Start!"
-            : isFlipped
-              ? cards[currentIndex].answer
-              : cards[currentIndex].question
-        }
-        color={
-          currentIndex === -1
-            ? "#f5f5f5"
-            : cards[currentIndex].color
-        }
-        onCardClick={handleCardClick}
+        displayText={shuffledCards[currentIndex].question}
+        color={shuffledCards[currentIndex].color}
+        onCardClick={() => {}}
       />
 
-      <button onClick={handleNext} className="next-button">→</button>
+      <div style={{ marginTop: '10px' }}>
+        <label>
+          <strong>Guess the answer here:</strong>{' '}
+          <input
+            type="text"
+            value={userGuess}
+            onChange={(e) => setUserGuess(e.target.value)}
+            placeholder="Place your answer here..."
+          />
+        </label>
+        <button onClick={handleGuessSubmit}>Submit Guess</button>
+      </div>
+
+      <p>{feedback}</p>
+
+      <div style={{ marginTop: '10px' }}>
+        <button onClick={handlePrev} disabled={currentIndex === 0}>←</button>
+        <button onClick={handleNext} disabled={currentIndex === shuffledCards.length - 1}>→</button>
+        <button onClick={handleShuffle}>Shuffle Cards</button>
+      </div>
     </div>
   );
 }
 
 export default App;
-// npm start
