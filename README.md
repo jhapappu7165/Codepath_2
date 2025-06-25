@@ -43,8 +43,7 @@ The following **additional** features are implemented:
 https://www.loom.com/share/d08f8f0a9e4e45889e27b16e5e884b26?sid=0e762aa9-1840-4bf3-b2dd-2d9a1e1ed454
 
 
-GIF created with **ScreenToGif**  
-[ScreenToGif](https://www.screentogif.com/) for Windows
+GIF created with **LOOM**  
 
 ## Notes
 
